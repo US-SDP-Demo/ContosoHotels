@@ -12,35 +12,35 @@ namespace ContosoHotels.Models
 
         [Required]
         [StringLength(100)]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
         [Required]
         [StringLength(100)]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         [Required]
         [EmailAddress]
         [StringLength(255)]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         [Phone]
         [StringLength(20)]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         [StringLength(500)]
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
         [StringLength(100)]
-        public string City { get; set; }
+        public string? City { get; set; }
 
         [StringLength(100)]
-        public string State { get; set; }
+        public string? State { get; set; }
 
         [StringLength(20)]
-        public string ZipCode { get; set; }
+        public string? ZipCode { get; set; }
 
         [StringLength(100)]
-        public string Country { get; set; }
+        public string? Country { get; set; }
 
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 

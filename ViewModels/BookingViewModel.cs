@@ -11,23 +11,23 @@ namespace ContosoHotels.ViewModels
         [Required]
         [StringLength(100)]
         [Display(Name = "First Name")]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
         [Required]
         [StringLength(100)]
         [Display(Name = "Last Name")]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         [Required]
         [EmailAddress]
         [StringLength(255)]
         [Display(Name = "Email Address")]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         [Phone]
         [StringLength(20)]
         [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -41,12 +41,14 @@ namespace ContosoHotels.ViewModels
 
         [Range(1, 10)]
         [Display(Name = "Number of Guests")]
-        public int NumberOfGuests { get; set; }        [StringLength(1000)]
+        public int NumberOfGuests { get; set; }
+
+        [StringLength(1000)]
         [Display(Name = "Special Requests")]
-        public string SpecialRequests { get; set; }
+        public string? SpecialRequests { get; set; }
 
         // Room information for display
-        public Room Room { get; set; }
+        public Room? Room { get; set; }
         
         // Customer information for the form
         public Customer Customer { get; set; } = new Customer();

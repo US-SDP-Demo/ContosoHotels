@@ -5,7 +5,7 @@ namespace ContosoHotels.ViewModels
 {
     public class SearchResultsViewModel
     {
-        public RoomSearchViewModel SearchCriteria { get; set; }
+        public RoomSearchViewModel? SearchCriteria { get; set; }
         public List<Room> AvailableRooms { get; set; } = new List<Room>();
         public int TotalResults { get; set; }
         public int PageNumber { get; set; } = 1;

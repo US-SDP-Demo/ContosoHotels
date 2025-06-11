@@ -1,5 +1,5 @@
 {
-    "name": "Contoso Hotels - Codespaces",
+    "name": "Contoso Hotels - Codespaces (.NET 8)",
     "dockerComposeFile": "docker-compose.yml",
     "service": "app",
     "workspaceFolder": "/workspace",

@@ -46,16 +46,14 @@ namespace ContosoHotels.Data
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Bookings)
                     .HasForeignKey(d => d.CustomerId)
-                    .OnDelete(DeleteBehavior.Restrict);
-
-                entity.HasOne(d => d.Room)
+                    .OnDelete(DeleteBehavior.Restrict);                entity.HasOne(d => d.Room)
                     .WithMany(p => p.Bookings)
                     .HasForeignKey(d => d.RoomId)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 // Check-in date must be before check-out date
-                entity.HasCheckConstraint("CK_Booking_CheckOutAfterCheckIn", 
-                    "[CheckOutDate] > [CheckInDate]");
+                entity.ToTable(t => t.HasCheckConstraint("CK_Booking_CheckOutAfterCheckIn", 
+                    "[CheckOutDate] > [CheckInDate]"));
             });
 
             // Configure RoomService entity

@@ -44,20 +44,20 @@ namespace ContosoHotels.Models
         public BookingStatus Status { get; set; } = BookingStatus.Pending;
 
         [StringLength(1000)]
-        public string SpecialRequests { get; set; }
+        public string? SpecialRequests { get; set; }
 
         public DateTime BookingDate { get; set; } = DateTime.UtcNow;
 
         public DateTime? CancellationDate { get; set; }
 
         [StringLength(500)]
-        public string CancellationReason { get; set; }
+        public string? CancellationReason { get; set; }
 
         // Navigation properties
         [ForeignKey("CustomerId")]
-        public virtual Customer Customer { get; set; }
+        public virtual Customer? Customer { get; set; }
 
         [ForeignKey("RoomId")]
-        public virtual Room Room { get; set; }
+        public virtual Room? Room { get; set; }
     }
 }

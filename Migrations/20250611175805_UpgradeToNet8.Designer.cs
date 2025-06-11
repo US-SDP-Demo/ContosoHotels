@@ -4,6 +4,7 @@ using ContosoHotels.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContosoHotels.Migrations
 {
     [DbContext(typeof(ContosoHotelsContext))]
-    partial class ContosoHotelsContextModelSnapshot : ModelSnapshot
+    [Migration("20250611175805_UpgradeToNet8")]
+    partial class UpgradeToNet8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

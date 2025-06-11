@@ -17,13 +17,11 @@ namespace ContosoHotels.ViewModels
 
         [Range(1, 10)]
         [Display(Name = "Number of Guests")]
-        public int NumberOfGuests { get; set; } = 2;
-
-        [Display(Name = "City")]
-        public string City { get; set; }
+        public int NumberOfGuests { get; set; } = 2;        [Display(Name = "City")]
+        public string? City { get; set; }
 
         [Display(Name = "Room Type")]
-        public string RoomType { get; set; }
+        public string? RoomType { get; set; }
 
         [Display(Name = "Maximum Price per Night")]
         public decimal? MaxPrice { get; set; }

@@ -1,10 +1,10 @@
 {  
-    "name": "Contoso Hotels (.NET Core 3.1)",
+    "name": "Contoso Hotels (.NET 8)",
     "dockerComposeFile": "docker-compose.yml",
     "service": "app",
     "workspaceFolder": "/workspace",
     "forwardPorts": [5000, 5001, 1433],
-    "initializeCommand": "./.devcontainer/pre-create.sh",
+    "initializeCommand": "bash ./.devcontainer/pre-create.sh",
     "postCreateCommand": "chmod +x .devcontainer/init-db.sh && dotnet restore ContosoHotels.sln && ./.devcontainer/init-db.sh",
     "customizations": {
         "vscode": {

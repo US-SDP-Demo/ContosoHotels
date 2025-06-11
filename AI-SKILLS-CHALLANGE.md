@@ -42,8 +42,8 @@ Create functionality for the AI concierge to assist current hotel guests by:
 
 ### 1. Application Modernization
 
-The current Contoso Hotels application uses ASP.NET Core 3.1 MVC, which is approaching end-of-support. As a stretch goal:
-- Upgrade the application to the latest .NET version
+The current Contoso Hotels application uses ASP.NET Core 8.0 MVC. As a stretch goal:
+- Explore newer .NET features and performance improvements
 - Modernize the frontend using a component-based framework
 - Implement responsive design principles throughout
 - Enhance accessibility features

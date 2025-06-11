@@ -15,6 +15,12 @@
     </PackageReference>
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.56.0" />
     <PackageReference Include="Microsoft.SemanticKernel.Connectors.AzureOpenAI" Version="1.56.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.PromptTemplates.Handlebars" Version="1.56.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.Yaml" Version="1.56.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Agents\**\*.yaml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,23 @@
+name: Guest Experience Orchestrator
+template: |
+  Tell our guest about all the lovely amenities available at the hotel, including the pool, spa, and restaurant.
+  If the guest asks about things that don't pertain to the hotel, politely redirect them to the appropriate service.
+
+  Context:
+  - Guest Name: {{guest_name}}
+  - Guest ID: {{guest_id}}
+template_format: handlebars
+description: A function that orchestrates the guest experience.
+input_variables:
+  - name: guest_name
+    description: The name of the guest.
+    is_required: true
+  - name: guest_id
+    description: The unique identifier for the guest.
+    is_required: true
+output_variable:
+  description: The description of the amenties.
+execution_settings:
+  default:
+    model_id: gpt-4o
+    temperature: 0.5

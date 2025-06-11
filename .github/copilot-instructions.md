@@ -6,7 +6,7 @@
 This is a hotel booking web application built with ASP.NET Core MVC using a 2019-era tech stack.
 
 ## Technology Stack
-- **Backend**: ASP.NET Core 3.1 MVC
+- **Backend**: ASP.NET Core 8.0 MVC
 - **Database**: SQL Server with Entity Framework Core
 - **Frontend**: Bootstrap 4, jQuery
 - **Development**: DevContainer support

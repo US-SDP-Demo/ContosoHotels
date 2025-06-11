@@ -35,7 +35,7 @@ Contoso Hotels is a full-featured hotel management and booking system that allow
 ## 🚀 Getting Started
 
 ### Prerequisites
-- .NET Core 3.1 SDK
+- .NET 8 SDK
 - SQL Server or SQL Server LocalDB
 - Visual Studio Code (recommended) or Visual Studio
 
@@ -176,7 +176,7 @@ dotnet ef migrations remove
 ## 🌟 Features Implemented
 
 ### ✅ Completed Features
-- [x] ASP.NET Core 3.1 MVC application structure
+- [x] ASP.NET Core 8.0 MVC application structure
 - [x] Entity Framework Core data layer with SQL Server
 - [x] Complete domain models (Customer, Room, Booking)
 - [x] Data seeding service with 5 years of test data

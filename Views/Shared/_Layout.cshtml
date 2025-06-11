@@ -77,9 +77,29 @@
             </div>
         </div>    </footer>
     
+    <!-- Contoso Chatbot Widget -->
+    <button id="contoso-chatbot-toggle" title="Chat with us">
+        <i class="fas fa-comments"></i>
+    </button>
+    <div id="contoso-chatbot" class="d-flex flex-column shadow">
+        <div id="contoso-chatbot-header">
+            <span><i class="fas fa-robot mr-2"></i>Contoso Chatbot</span>
+            <button type="button" class="close text-light" id="contoso-chatbot-close" aria-label="Close" style="background: none; border: none; font-size: 1.3rem;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div id="contoso-chatbot-messages"></div>
+        <form id="contoso-chatbot-input" autocomplete="off">
+            <input type="text" id="contoso-chatbot-prompt" placeholder="Type your message..." class="form-control" required />
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+        </form>
+    </div>
+    <link rel="stylesheet" href="~/css/chatbot.css" />
+    <!-- End Contoso Chatbot Widget -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/chatbot.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

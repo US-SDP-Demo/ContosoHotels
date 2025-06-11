@@ -1,6 +1,9 @@
+using Azure.Identity;
+using CommunityToolkit.Diagnostics;
 using ContosoHotels.Data;
 using ContosoHotels.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.SemanticKernel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +36,20 @@ builder.Services.AddControllersWithViews();
 
 // Register custom services
 builder.Services.AddScoped<DataSeedingService>();
+
+// Add Semantic Kernel services
+var deploymentName = builder.Configuration["AzureOpenAI:DeploymentName"];
+var endpoint = builder.Configuration["AzureOpenAI:Endpoint"];
+
+Guard.IsNotNull(deploymentName);
+Guard.IsNotNull(endpoint);
+
+builder.Services
+    .AddKernel()
+    .AddAzureOpenAIChatCompletion(
+        deploymentName: deploymentName,
+        endpoint: endpoint,
+        credentials: new DefaultAzureCredential());
 
 var app = builder.Build();
 

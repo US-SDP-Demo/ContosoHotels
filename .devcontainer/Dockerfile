@@ -9,7 +9,7 @@ RUN apt-get update \
         gnupg \
         lsb-release \
     && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && curl https://packages.microsoft.com/config/debian/12/prod.list > /etc/apt/sources.list.d/msprod.list \
+    && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/msprod.list \
     && apt-get update \
     && ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev \
     && echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc \

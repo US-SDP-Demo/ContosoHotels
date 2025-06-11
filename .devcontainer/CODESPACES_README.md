@@ -6,7 +6,7 @@ This document provides information about running the Contoso Hotels project in G
 
 The devcontainer configuration automatically sets up:
 
-1. .NET Core 3.1 development environment
+1. .NET 8 development environment
 2. SQL Server 2019 database
 3. Required VS Code extensions
 4. Database initialization with sample data

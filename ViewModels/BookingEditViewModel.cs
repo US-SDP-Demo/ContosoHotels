@@ -20,11 +20,9 @@ namespace ContosoHotels.ViewModels
 
         [Range(1, 10)]
         [Display(Name = "Number of Guests")]
-        public int NumberOfGuests { get; set; }
-
-        [StringLength(1000)]
+        public int NumberOfGuests { get; set; }        [StringLength(1000)]
         [Display(Name = "Special Requests")]
-        public string SpecialRequests { get; set; }
+        public string? SpecialRequests { get; set; }
 
         // Current values for comparison
         public DateTime CurrentCheckInDate { get; set; }
@@ -32,8 +30,8 @@ namespace ContosoHotels.ViewModels
         public decimal CurrentTotalAmount { get; set; }
 
         // Related objects for display
-        public Room Room { get; set; }
-        public Customer Customer { get; set; }
+        public Room? Room { get; set; }
+        public Customer? Customer { get; set; }
 
         // Computed properties
         public decimal NewTotalAmount => Room != null ? Room.PricePerNight * (decimal)(CheckOutDate - CheckInDate).TotalDays : 0;

@@ -1,6 +1,6 @@
-# Contoso Hotels Dev Container Guide
+# Contoso Hotels Dev Container Guide (.NET 8)
 
-This project uses a Docker-based development environment to ensure consistent development across different machines. It replaces the need for LocalDB with a containerized SQL Server instance and implements security best practices for handling sensitive information.
+This project uses a Docker-based development environment with .NET 8 to ensure consistent development across different machines. It replaces the need for LocalDB with a containerized SQL Server instance and implements security best practices for handling sensitive information.
 
 ## Why SQL Server in Docker instead of LocalDB?
 

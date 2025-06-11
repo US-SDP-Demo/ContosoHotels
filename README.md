@@ -8,11 +8,11 @@ Contoso Hotels is a full-featured hotel management and booking system that allow
 
 ## 🛠️ Technology Stack
 
-- **Backend**: ASP.NET Core 3.1 MVC
-- **Database**: SQL Server with Entity Framework Core 3.1.32
+- **Backend**: ASP.NET Core 8.0 MVC (Upgraded from 3.1)
+- **Database**: SQL Server with Entity Framework Core 8.0
 - **Frontend**: Bootstrap 4, jQuery, HTML5, CSS3
 - **Development**: DevContainer support with Docker
-- **Database Providers**: SQL Server in Docker for development/DevContainers, LocalDB for local Windows development
+- **Database Providers**: SQL Server in Docker for development/DevContainers
 
 ## 🏗️ Architecture
 

@@ -41,10 +41,10 @@ namespace ContosoHotels.Models
         public DateTime? CompletionDate { get; set; }
 
         [StringLength(500)]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         // Navigation property
         [ForeignKey("BookingId")]
-        public virtual Booking Booking { get; set; }
+        public virtual Booking? Booking { get; set; }
     }
 }

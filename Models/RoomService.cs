@@ -26,14 +26,12 @@ namespace ContosoHotels.Models
         public int RoomServiceId { get; set; }
 
         [Required]
-        public int BookingId { get; set; }
-
-        [Required]
+        public int BookingId { get; set; }        [Required]
         [StringLength(200)]
-        public string ItemName { get; set; }
+        public string ItemName { get; set; } = string.Empty;
 
         [StringLength(1000)]
-        public string ItemDescription { get; set; }
+        public string? ItemDescription { get; set; }
 
         [Required]
         public RoomServiceType ServiceType { get; set; }
@@ -50,10 +48,10 @@ namespace ContosoHotels.Models
         public decimal Price { get; set; }
 
         [StringLength(500)]
-        public string SpecialInstructions { get; set; }
+        public string? SpecialInstructions { get; set; }
 
         // Navigation property
         [ForeignKey("BookingId")]
-        public virtual Booking Booking { get; set; }
+        public virtual Booking? Booking { get; set; }
     }
 }

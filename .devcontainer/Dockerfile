@@ -1,5 +1,5 @@
-# Use the official .NET Core 3.1 SDK image (updated tag)
-FROM mcr.microsoft.com/dotnet/sdk:3.1
+# Use the official .NET 8 SDK image
+FROM mcr.microsoft.com/dotnet/sdk:8.0
 
 # Install SQL Server tools and dependencies
 RUN apt-get update \
@@ -9,15 +9,15 @@ RUN apt-get update \
         gnupg \
         lsb-release \
     && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/msprod.list \
+    && curl https://packages.microsoft.com/config/debian/12/prod.list > /etc/apt/sources.list.d/msprod.list \
     && apt-get update \
     && ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev \
     && echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Entity Framework Core tools globally
-RUN dotnet tool install --global dotnet-ef --version 3.1.32
+# Install Entity Framework Core tools globally for .NET 8
+RUN dotnet tool install --global dotnet-ef --version 8.0.0
 
 # Ensure dotnet tools are in PATH
 ENV PATH="${PATH}:/root/.dotnet/tools"

@@ -1,5 +1,6 @@
 using Azure.Identity;
 using CommunityToolkit.Diagnostics;
+using ContosoHotels.Agents;
 using ContosoHotels.Data;
 using ContosoHotels.Services;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +51,8 @@ builder.Services
         deploymentName: deploymentName,
         endpoint: endpoint,
         credentials: new DefaultAzureCredential());
+
+builder.Services.AddScoped<GuestAgent>();
 
 var app = builder.Build();
 

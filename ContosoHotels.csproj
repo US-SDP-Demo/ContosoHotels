@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Agents\**\*.yaml" CopyToOutputDirectory="PreserveNewest" />
+    <EmbeddedResource Include="Agents\Orchestrator\orchestrator.yaml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

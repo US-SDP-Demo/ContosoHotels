@@ -13,12 +13,12 @@ public class GuestAgent
     _kernel = kernel;
   }
 
-  public async Task<string> GetHotelInfoAsync(string hotelName)
+  public async Task<string> GetHotelInfoAsync(string guestQuery)
   {
     // Create the prompt function from the YAML resource
     var templateFactory = new HandlebarsPromptTemplateFactory();
 
-    using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("YourNamespace.orchestrator.yaml");
+    using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("ContosoHotels.Agents.Orchestrator.orchestrator.yaml");
     using var reader = new StreamReader(stream);
     var handlebarsPromptYaml = await reader.ReadToEndAsync(); var function = _kernel.CreateFunctionFromPromptYaml(handlebarsPromptYaml, templateFactory);
 
@@ -29,7 +29,7 @@ public class GuestAgent
           { "guest_id", "12345" },
           { "history", new[]
               {
-                  new { role = "user", content = "What ameneties are available in this hotel?" },
+                  new { role = "user", content = guestQuery },
               }
           },
       };

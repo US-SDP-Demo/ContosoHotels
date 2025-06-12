@@ -26,7 +26,7 @@ public class ChatbotController : ControllerBase
       }
 
       // Process the user's message and generate a response
-      var response = await GenerateResponseAsync(request.Message);
+      var response = await GenerateResponseAsync(request);
       
       return Ok(new { message = response });
     }
@@ -37,14 +37,16 @@ public class ChatbotController : ControllerBase
     }
   }
 
-  private async Task<string> GenerateResponseAsync(string userMessage)
+  private async Task<string> GenerateResponseAsync(ChatbotRequest request)
   {
-    var response = await _guestAgent.GetHotelInfoAsync(userMessage);
+    var response = await _guestAgent.GetHotelInfoAsync(request.GuestId, request.GuestName, request.Message);
     return response;
   }
 }
 
 public class ChatbotRequest
 {
-    public string Message { get; set; } = string.Empty;
+  public string Message { get; set; } = string.Empty;
+  public string GuestName { get; set; } = string.Empty;
+  public int GuestId { get; set; }
 }

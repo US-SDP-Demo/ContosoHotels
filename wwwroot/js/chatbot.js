@@ -27,13 +27,26 @@ $(function () {
         e.preventDefault();
         var prompt = $input.val().trim();
         if (!prompt) return;
+        
         appendMessage(prompt, 'user');
         $input.val('');
         appendMessage('Let me think...', 'bot');
-        // Simulate async bot response (replace with real API call if needed)
-        setTimeout(function () {
-            $messages.find('.contoso-chatbot-message.bot:last .contoso-chatbot-bubble').text('This is a sample response to: ' + prompt);
-        }, 900);
+        
+        // Send to backend instead of simulated response
+        $.ajax({
+            url: '/api/Chatbot/message',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ message: prompt }),
+            success: function (response) {
+                // Replace the "thinking" message with actual response
+                $messages.find('.contoso-chatbot-message.bot:last .contoso-chatbot-bubble').text(response.message);
+            },
+            error: function (xhr, status, error) {
+                console.error('Chatbot error:', error);
+                $messages.find('.contoso-chatbot-message.bot:last .contoso-chatbot-bubble').text('Sorry, I\'m having trouble responding right now. Please try again later.');
+            }
+        });
     });
 
     // Optional: greet on open

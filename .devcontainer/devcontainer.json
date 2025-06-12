@@ -7,13 +7,13 @@
     "initializeCommand": "bash ./.devcontainer/pre-create.sh",
     "postCreateCommand": "chmod +x .devcontainer/init-db.sh && dotnet restore ContosoHotels.sln && ./.devcontainer/init-db.sh",
     "customizations": {
-        "vscode": {
-            "extensions": [
+        "vscode": {            "extensions": [
                 "ms-dotnettools.csharp",
                 "ms-mssql.mssql",
                 "bradlc.vscode-tailwindcss",
                 "formulahendry.auto-rename-tag",
-                "ms-vscode.vscode-json"
+                "ms-vscode.vscode-json",
+                "ms-vscode.azure-cli"
             ],
             "settings": {
                 "dotnet.defaultSolution": "ContosoHotels.sln",

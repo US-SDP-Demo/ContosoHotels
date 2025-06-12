@@ -61,8 +61,8 @@ $(function () {
             data: JSON.stringify(
                 { 
                     message: prompt,
-                    guestName: userInfo.name,
-                    guestId: userInfo.id
+                    guestName: userInfo.firstName + ' ' + userInfo.lastName,
+                    guestId: userInfo.customerId
                 }
             ),
             success: function (response) {

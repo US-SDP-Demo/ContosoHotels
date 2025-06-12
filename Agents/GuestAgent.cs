@@ -13,7 +13,7 @@ public class GuestAgent
     _kernel = kernel;
   }
 
-  public async Task<string> GetHotelInfoAsync(string guestQuery)
+  public async Task<string> GetHotelInfoAsync(int guestId, string guestName, string guestQuery)
   {
     // Create the prompt function from the YAML resource
     var templateFactory = new HandlebarsPromptTemplateFactory();
@@ -26,8 +26,8 @@ public class GuestAgent
     // Input data for the prompt rendering and execution
     var arguments = new KernelArguments()
       {
-          { "guest_name", "John Doe"},
-          { "guest_id", "12345" },
+          { "guest_name", guestName},
+          { "guest_id", guestId },
           { "history", new[]
               {
                   new { role = "user", content = guestQuery },

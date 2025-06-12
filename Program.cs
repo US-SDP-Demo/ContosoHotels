@@ -53,6 +53,8 @@ builder.Services
         credentials: new DefaultAzureCredential());
 
 builder.Services.AddScoped<GuestAgent>();
+builder.Services.AddScoped<RoomServiceSkAgent>();
+builder.Services.AddScoped<HousekeepingSkAgent>();
 
 var app = builder.Build();
 

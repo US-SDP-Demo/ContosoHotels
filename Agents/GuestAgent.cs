@@ -20,7 +20,8 @@ public class GuestAgent
 
     using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("ContosoHotels.Agents.Orchestrator.orchestrator.yaml");
     using var reader = new StreamReader(stream);
-    var handlebarsPromptYaml = await reader.ReadToEndAsync(); var function = _kernel.CreateFunctionFromPromptYaml(handlebarsPromptYaml, templateFactory);
+    var handlebarsPromptYaml = await reader.ReadToEndAsync();
+    var function = _kernel.CreateFunctionFromPromptYaml(handlebarsPromptYaml, templateFactory);
 
     // Input data for the prompt rendering and execution
     var arguments = new KernelArguments()

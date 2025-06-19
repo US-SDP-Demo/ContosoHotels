@@ -67,20 +67,20 @@ public class OrchestratorService
       roomServiceKernel,
       guestKernelArguments,
       "roomservice.yaml");
-    
+
 
 #pragma warning disable SKEXP0110 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
     var handoffs = OrchestrationHandoffs
       .StartWith(orchestratorAgent)
-      .Add(orchestratorAgent, housekeepingAgent, roomServiceAgent)
+      .Add(orchestratorAgent, roomServiceAgent, housekeepingAgent)
       .Add(housekeepingAgent, orchestratorAgent, "Transfer to this agent if the issue is not related to housekeeping.")
       .Add(roomServiceAgent, orchestratorAgent, "Transfer to this agent if the issue is not related to room service.");
 
     HandoffOrchestration orchestration = new(
       handoffs,
       orchestratorAgent,
-      roomServiceAgent,
-      housekeepingAgent)
+      housekeepingAgent,
+      roomServiceAgent)
     {
       ResponseCallback = LoggingResponseCallback,
       LoggerFactory = _loggerFactory

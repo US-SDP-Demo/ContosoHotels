@@ -17,7 +17,7 @@ $(function () {
 
     function fetchUserInfo() {
         $.ajax({
-            url: '/api/CustomerInfo/customer/melissa.taylor20@email.com',
+            url: '/api/CustomerInfo/customer/david.allen59@email.com',
             method: 'GET',
             success: function (response) {
                 userInfo = response;

@@ -17,16 +17,20 @@ namespace ContosoHotels.Agents
             _context = context;            
         }
 
-        [KernelFunction, Description("Get the latest room service order for a guest")]
-        public async Task<RoomService?> GetRoomServiceOrderForGuest(
-            [Description("The ID of the guest to retrieve the order for")]
+        [KernelFunction, Description("Get the all active room service orders for a guest")]
+        public async Task<IEnumerable<RoomService?>> GetRoomServiceOrderForGuest(
+            [Description("The ID of the guest to retrieve the active orders for")]
             int guestId)
         {
             return await _context.RoomServices
-                .Include(r => r.Booking)
-                .Include(r => r.Booking.Customer)
-                .Include(r => r.Booking.Room)
-                .FirstOrDefaultAsync(r => r.Booking.Customer.CustomerId == guestId);
+                .Include(rs => rs.Booking)
+                    .ThenInclude(b => b.Customer)
+                .Include(rs => rs.Booking)
+                    .ThenInclude(b => b.Room)
+                .Where(rs => rs.Booking.CustomerId == guestId)
+                .Where(rs => rs.Status == RoomServiceStatus.Requested || rs.Status == RoomServiceStatus.InProgress)
+                .OrderByDescending(rs => rs.RequestDate)
+                .ToListAsync();
         }
 
         [KernelFunction]

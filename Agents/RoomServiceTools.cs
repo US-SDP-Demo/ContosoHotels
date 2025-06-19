@@ -8,63 +8,25 @@ using System.Text.Json;
 
 namespace ContosoHotels.Agents
 {
-    public class RoomServiceSkAgent
+    public class RoomServiceTools
     {
-        private readonly Kernel _kernel;
         private readonly ContosoHotelsContext _context;
 
-        public RoomServiceSkAgent(Kernel kernel, ContosoHotelsContext context)
+        public RoomServiceTools(ContosoHotelsContext context)
         {
-            _kernel = kernel;
-            _context = context;
-            
-            // Register room service functions with the kernel
-            RegisterRoomServiceFunctions();
+            _context = context;            
         }
 
-        private void RegisterRoomServiceFunctions()
+        [KernelFunction, Description("Get the latest room service order for a guest")]
+        public async Task<RoomService?> GetRoomServiceOrderForGuest(
+            [Description("The ID of the guest to retrieve the order for")]
+            int guestId)
         {
-            // Function to search and list room service orders
-            _kernel.CreateFunctionFromMethod(
-                SearchRoomServiceOrdersAsync,
-                "SearchRoomServiceOrders",
-                "Search and retrieve room service orders based on criteria like room number, date range, and status."
-            );
-
-            // Function to get details of a specific room service order
-            _kernel.CreateFunctionFromMethod(
-                GetRoomServiceDetailsAsync,
-                "GetRoomServiceDetails", 
-                "Get detailed information about a specific room service order by its ID."
-            );
-
-            // Function to update the status of a room service order
-            _kernel.CreateFunctionFromMethod(
-                UpdateRoomServiceStatusAsync,
-                "UpdateRoomServiceStatus",
-                "Update the status of a room service order (Requested, InProgress, Delivered, Cancelled)."
-            );
-
-            // Function to create a new room service order
-            _kernel.CreateFunctionFromMethod(
-                CreateRoomServiceOrderAsync,
-                "CreateRoomServiceOrder",
-                "Create a new room service order for a booking."
-            );
-
-            // Function to get menu items and pricing
-            _kernel.CreateFunctionFromMethod(
-                GetMenuItemsAsync,
-                "GetMenuItems",
-                "Get available menu items with pricing for room service orders."
-            );
-
-            // Function to get room service statistics  
-            _kernel.CreateFunctionFromMethod(
-                GetRoomServiceStatsAsync,
-                "GetRoomServiceStats",
-                "Get statistics about room service orders for analysis and reporting."
-            );
+            return await _context.RoomServices
+                .Include(r => r.Booking)
+                .Include(r => r.Booking.Customer)
+                .Include(r => r.Booking.Room)
+                .FirstOrDefaultAsync(r => r.Booking.Customer.CustomerId == guestId);
         }
 
         [KernelFunction]

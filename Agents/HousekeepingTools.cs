@@ -8,56 +8,13 @@ using System.Text.Json;
 
 namespace ContosoHotels.Agents;
 
-public class HousekeepingSkAgent
+public class HousekeepingTools
 {
-    private readonly Kernel _kernel;
     private readonly ContosoHotelsContext _context;
 
-    public HousekeepingSkAgent(Kernel kernel, ContosoHotelsContext context)
+    public HousekeepingTools(ContosoHotelsContext context)
     {
-        _kernel = kernel;
         _context = context;
-        RegisterFunctions();
-    }
-
-    private void RegisterFunctions()
-    {
-        // Register kernel functions that mirror HousekeepingController methods
-        _kernel.CreateFunctionFromMethod(
-            SearchHousekeepingRequestsAsync,
-            functionName: "SearchHousekeepingRequests",
-            description: "Search and filter housekeeping requests with pagination"
-        );
-
-        _kernel.CreateFunctionFromMethod(
-            GetHousekeepingDetailsAsync,
-            functionName: "GetHousekeepingDetails",
-            description: "Get detailed information about a specific housekeeping request"
-        );
-
-        _kernel.CreateFunctionFromMethod(
-            UpdateHousekeepingStatusAsync,
-            functionName: "UpdateHousekeepingStatus",
-            description: "Update the status of a housekeeping request"
-        );
-
-        _kernel.CreateFunctionFromMethod(
-            CreateHousekeepingRequestAsync,
-            functionName: "CreateHousekeepingRequest",
-            description: "Create a new housekeeping request for a booking"
-        );
-
-        _kernel.CreateFunctionFromMethod(
-            GetHousekeepingStatsAsync,
-            functionName: "GetHousekeepingStats",
-            description: "Get statistics about housekeeping requests and completion times"
-        );
-
-        _kernel.CreateFunctionFromMethod(
-            GetRequestTypesAsync,
-            functionName: "GetRequestTypes",
-            description: "Get available housekeeping request types"
-        );
     }
 
     [KernelFunction]
@@ -429,44 +386,44 @@ public class HousekeepingSkAgent
     /// <summary>
     /// Process natural language housekeeping requests using Semantic Kernel
     /// </summary>
-    public async Task<string> ProcessHousekeepingRequestAsync(string userMessage)
-    {
-        try
-        {
-            var promptTemplate = """
-                You are a helpful housekeeping assistant for Contoso Hotels. You help guests and staff manage housekeeping requests.
+    // public async Task<string> ProcessHousekeepingRequestAsync(string userMessage)
+    // {
+    //     try
+    //     {
+    //         var promptTemplate = """
+    //             You are a helpful housekeeping assistant for Contoso Hotels. You help guests and staff manage housekeeping requests.
                 
-                Available functions:
-                - SearchHousekeepingRequests: Search and filter housekeeping requests
-                - GetHousekeepingDetails: Get details about a specific request
-                - UpdateHousekeepingStatus: Update request status (Requested, InProgress, Completed, Cancelled)
-                - CreateHousekeepingRequest: Create new housekeeping requests
-                - GetHousekeepingStats: Get housekeeping statistics
-                - GetRequestTypes: Get available request types and statuses
+    //             Available functions:
+    //             - SearchHousekeepingRequests: Search and filter housekeeping requests
+    //             - GetHousekeepingDetails: Get details about a specific request
+    //             - UpdateHousekeepingStatus: Update request status (Requested, InProgress, Completed, Cancelled)
+    //             - CreateHousekeepingRequest: Create new housekeeping requests
+    //             - GetHousekeepingStats: Get housekeeping statistics
+    //             - GetRequestTypes: Get available request types and statuses
                 
-                User request: {{$userMessage}}
+    //             User request: {{$userMessage}}
                 
-                Based on the user's request, determine what they want to do and call the appropriate function(s).
-                If they want to:
-                - Search for requests: Use SearchHousekeepingRequests
-                - See request details: Use GetHousekeepingDetails
-                - Update a request: Use UpdateHousekeepingStatus
-                - Create a new request: Use CreateHousekeepingRequest
-                - See statistics: Use GetHousekeepingStats
-                - Learn about request types: Use GetRequestTypes
+    //             Based on the user's request, determine what they want to do and call the appropriate function(s).
+    //             If they want to:
+    //             - Search for requests: Use SearchHousekeepingRequests
+    //             - See request details: Use GetHousekeepingDetails
+    //             - Update a request: Use UpdateHousekeepingStatus
+    //             - Create a new request: Use CreateHousekeepingRequest
+    //             - See statistics: Use GetHousekeepingStats
+    //             - Learn about request types: Use GetRequestTypes
                 
-                Respond in a helpful, professional manner appropriate for hotel staff or guests.
-                """;
+    //             Respond in a helpful, professional manner appropriate for hotel staff or guests.
+    //             """;
 
-            var function = _kernel.CreateFunctionFromPrompt(promptTemplate);
-            var arguments = new KernelArguments { ["userMessage"] = userMessage };
+    //         var function = _kernel.CreateFunctionFromPrompt(promptTemplate);
+    //         var arguments = new KernelArguments { ["userMessage"] = userMessage };
 
-            var result = await _kernel.InvokeAsync(function, arguments);
-            return result.ToString();
-        }
-        catch (Exception ex)
-        {
-            return JsonSerializer.Serialize(new { error = $"Error processing housekeeping request: {ex.Message}" });
-        }
-    }
+    //         var result = await _kernel.InvokeAsync(function, arguments);
+    //         return result.ToString();
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         return JsonSerializer.Serialize(new { error = $"Error processing housekeeping request: {ex.Message}" });
+    //     }
+    // }
 }

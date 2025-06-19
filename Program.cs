@@ -38,23 +38,12 @@ builder.Services.AddControllersWithViews();
 // Register custom services
 builder.Services.AddScoped<DataSeedingService>();
 
-// Add Semantic Kernel services
-var deploymentName = builder.Configuration["AzureOpenAI:DeploymentName"];
-var endpoint = builder.Configuration["AzureOpenAI:Endpoint"];
+// Register the kernel factory
+builder.Services.AddSingleton<KernelFactory>();
 
-Guard.IsNotNull(deploymentName);
-Guard.IsNotNull(endpoint);
-
-builder.Services
-    .AddKernel()
-    .AddAzureOpenAIChatCompletion(
-        deploymentName: deploymentName,
-        endpoint: endpoint,
-        credentials: new DefaultAzureCredential());
-
-builder.Services.AddScoped<GuestAgent>();
-builder.Services.AddScoped<RoomServiceSkAgent>();
-builder.Services.AddScoped<HousekeepingSkAgent>();
+builder.Services.AddScoped<OrchestratorService>();
+builder.Services.AddScoped<RoomServiceTools>();
+builder.Services.AddScoped<HousekeepingTools>();
 
 var app = builder.Build();
 

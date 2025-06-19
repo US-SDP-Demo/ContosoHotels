@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ContosoHotels.Models
 {
@@ -54,10 +55,10 @@ namespace ContosoHotels.Models
         public string? CancellationReason { get; set; }
 
         // Navigation properties
-        [ForeignKey("CustomerId")]
+        [ForeignKey("CustomerId"), JsonIgnore]
         public virtual Customer? Customer { get; set; }
 
-        [ForeignKey("RoomId")]
+        [ForeignKey("RoomId"), JsonIgnore]
         public virtual Room? Room { get; set; }
     }
 }

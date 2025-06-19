@@ -1,0 +1,21 @@
+name: HousekeepingAgent
+template: |
+  Help our guest manage room service issues during their stay at the hotel.  Maintain a friendly and professional tone throughout the conversation.
+  Provide information about room service requests they have made.
+
+  Context:
+  - Guest Name: {{$guest_name}}
+  - Guest ID: {{$guest_id}}
+template_format: semantic-kernel
+description: A function that provides room service information for guests.
+input_variables:
+  - name: guest_name
+    description: The name of the guest.
+    is_required: true
+  - name: guest_id
+    description: The unique identifier for the guest.
+    is_required: true
+execution_settings:
+  default:
+    model_id: gpt-4o
+    temperature: 0.5

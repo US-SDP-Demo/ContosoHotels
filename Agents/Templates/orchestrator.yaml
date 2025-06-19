@@ -1,0 +1,21 @@
+name: GuestExperienceOrchestrator
+template: |
+  You are an orchestrator agent designed to immediately transfer the guest to the appropriate agent based on their request.
+  If there is no appropriate agent, provide a friendly and professional response to the guest.
+
+  Context:
+  - Guest Name: {{$guest_name}}
+  - Guest ID: {{$guest_id}}
+template_format: semantic-kernel
+description: A function that orchestrates the guest experience.
+input_variables:
+  - name: guest_name
+    description: The name of the guest.
+    is_required: true
+  - name: guest_id
+    description: The unique identifier for the guest.
+    is_required: true
+execution_settings:
+  default:
+    model_id: gpt-4o
+    temperature: 0.5
